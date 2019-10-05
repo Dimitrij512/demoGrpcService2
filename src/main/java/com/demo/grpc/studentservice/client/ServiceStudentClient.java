@@ -23,8 +23,8 @@ public class ServiceStudentClient {
     private StudentServiceGrpc.StudentServiceStub stub;
 
     public ServiceStudentClient() {
-        ManagedChannel channel = ManagedChannelBuilder
-            .forAddress("localhost", 6063).usePlaintext().build();
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 6063).usePlaintext().build();
+
         serviceBlockingStub = StudentServiceGrpc.newBlockingStub(channel);
         stub = StudentServiceGrpc.newStub(channel);
     }

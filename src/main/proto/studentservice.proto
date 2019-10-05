@@ -17,16 +17,16 @@ message StudentAgeRequest {
 }
 
 message StudentResponse {
-    com.grpc.dao.student.service.Student student = 1;
+    Student student = 1;
 }
 
 message StudentsResponse {
-    repeated com.grpc.dao.student.service.Student students = 1;
+    repeated Student students = 1;
 }
 
 service StudentService {
     rpc GetStudentById(StudentIdRequest) returns (StudentResponse);
     rpc FindStudentsByAge(StudentAgeRequest) returns (StudentsResponse);
     rpc FindAllStudent(google.protobuf.Empty) returns (StudentsResponse);
-    rpc FindStudentByStatusStream(stream com.grpc.dao.student.service.StudentStatusRequest) returns (stream com.grpc.dao.student.service.Student);
+    rpc FindStudentByStatusStream(stream StudentStatusRequest) returns (stream Student);
 };
