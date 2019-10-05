@@ -33,7 +33,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--add dao service-->
+		<!--add service3-->
 		<dependency>
 			<groupId>com.grpc.demo.service</groupId>
 			<artifactId>service3</artifactId>
@@ -73,10 +73,11 @@
 			</extension>
 		</extensions>
 		<plugins>
-			<plugin>
+			<!-- Necessary for creating jar file for running the application, but not for dependency jar file in another service -->
+<!--			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<groupId>com.google.protobuf.tools</groupId>
 				<artifactId>maven-protoc-plugin</artifactId>

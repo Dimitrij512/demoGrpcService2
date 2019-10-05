@@ -24,19 +24,19 @@ public class StudentService extends StudentServiceGrpc.StudentServiceImplBase {
 
     @Override
     public void getStudentById(StudentIdRequest request, StreamObserver<StudentResponse> responseObserver) {
-        System.out.println("call getStudentById");
+        System.out.println("################## call getStudentById ##################");
 
         Student studentById = daoClient.getById(request.getId());
 
         responseObserver.onNext(StudentResponse.newBuilder().setStudent(studentById).build());
         responseObserver.onCompleted();
 
-        System.out.println("finished work getStudentById");
+        System.out.println("################## finished work getStudentById ##################");
     }
 
     @Override
     public void findStudentsByAge(StudentAgeRequest request, StreamObserver<StudentsResponse> responseObserver) {
-        System.out.println("call findStudentsByAge");
+        System.out.println("################## call findStudentsByAge ##################");
 
         try {
             //emulation deadline propagation
@@ -47,31 +47,33 @@ public class StudentService extends StudentServiceGrpc.StudentServiceImplBase {
         }
 
         ServerCallStreamObserver<StudentsResponse> streamObserver = (ServerCallStreamObserver<StudentsResponse>) responseObserver;
-        streamObserver.setOnCancelHandler(() -> System.out.println("Request was canceled"));
+        streamObserver.setOnCancelHandler(() -> System.out.println("################## Request was canceled ##################"));
 
         List<Student> studentList = daoClient.findByAge(request.getAge());
 
         responseObserver.onNext(StudentsResponse.newBuilder().addAllStudents(studentList).build());
         responseObserver.onCompleted();
 
-        System.out.println("finished work findStudentsByAge");
+        System.out.println("################## finished work findStudentsByAge ##################");
     }
 
     @Override
     public void findAllStudent(com.google.protobuf.Empty request, StreamObserver<StudentsResponse> responseObserver) {
-        System.out.println("call findAllStudent");
+        System.out.println("################## call findAllStudent ##################");
 
         List<Student> studentlist = daoClient.findAll();
 
         responseObserver.onNext(StudentsResponse.newBuilder().addAllStudents(studentlist).build());
         responseObserver.onCompleted();
 
-        System.out.println("finished work findAllStudent");
+        System.out.println("################## finished work findAllStudent ##################");
     }
 
     @Override
     public StreamObserver<StudentStatusRequest> findStudentByStatusStream(StreamObserver<Student> responseObserver){
-        System.out.println("call findStudentByStatusStream");
+        System.out.println("###################################################");
+        System.out.println("#  **** call findStudentByStatusStream ****       #");
+        System.out.println("###################################################");
 
         return daoClient.findAllByStatus(responseObserver);
     }
